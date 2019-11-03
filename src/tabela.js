@@ -1,40 +1,47 @@
 import React, { Component } from 'react';
 
-export class Tabela extends Component {
+const TableHead = () => {
+  return (
+    <thead>
+      <tr>
+        <th>Autor</th>
+        <th>Livro</th>
+        <th>Preço</th>
+        <th>Remover</th>
+      </tr>
+    </thead>
+  );
+}
 
+const TableBody = (props) => {
+  const tbody = props.autores.map((autor) => {
+    return (
+      <tr>
+        <td>{ autor.nome }</td>
+        <td>{ autor.livro }</td>
+        <td>{ autor.preco }</td>
+        <td><button>Remove</button></td>
+      </tr>
+    )
+  });
+
+  return (
+    <tbody>
+      { tbody }
+    </tbody>
+  );
+}
+
+export class Tabela extends Component {
+  
   render() {
+    const { autores } = this.props;
+
     return(
       <table>
-        <thead>
-          <tr>
-            <th>Autor</th>
-            <th>Livro</th>
-            <th>Preço</th>
-            <th>Remover</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Bruno</td>
-            <td>React</td>
-            <td>1000</td>
-            <td><button>Remove</button></td>
-          </tr>
-          <tr>
-            <td>Diego</td>
-            <td>React</td>
-            <td>1000</td>
-            <td><button>Remove</button></td>
-          </tr>
-          <tr>
-            <td>João</td>
-            <td>React</td>
-            <td>1000</td>
-            <td><button>Remove</button></td>
-          </tr>
-        </tbody>
+        <TableHead />
+        <TableBody autores = { autores } />
       </table>
     );
   }
-
 }
